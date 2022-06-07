@@ -1,10 +1,18 @@
 #!/usr/bin/env python
 
 import subprocess
+import optparse
+
+
+argumentsParse = optparse.OptionParser()
+argumentsParse.add_option('-i','--interface',dest='interface',help="the interface to change the mac address")
+argumentsParse.add_option('-m','--mac',dest='macAddress',help="New MAC address")
+(options,arguments) = argumentsParse.parse_args()
+
 subprocess.call("ip link show",shell=True)
 print('Select the interface from the above list. (Shows available interfaces)')
-interface = input("Select the interface > ")
-new_mac = input("the new mac address > ")
+interface = options.interface
+new_mac = options.macAddress
 
 
 
